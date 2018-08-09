@@ -24,20 +24,20 @@ module "dcos-master-instances" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| aws_ami | Specify the AMI to be used. | string | `` | no |
-| aws_associate_public_ip_address | The instance profile to be used for these instances | string | `true` | no |
-| aws_iam_instance_profile | The instance profile to be used for these instances | string | `` | no |
-| aws_instance_type | Specify the instance type | string | `m4.xlarge` | no |
-| aws_key_name | The SSH key to use for these instances. | string | - | yes |
-| aws_root_volume_size | Specify the root volume size | string | `120` | no |
+| aws_ami | AMI to be used | string | `` | no |
+| aws_associate_public_ip_address | Instance profile to be used for these instances | string | `true` | no |
+| aws_iam_instance_profile | Instance profile to be used for these instances | string | `` | no |
+| aws_instance_type | Instance type | string | `m4.xlarge` | no |
+| aws_key_name | EC2 SSH key to use for these instances | string | - | yes |
+| aws_root_volume_size | Root volume size | string | `120` | no |
 | aws_security_group_ids | Firewall IDs to use for these instances | list | - | yes |
 | aws_subnet_ids | Subnets to spawn the instances in. The module tries to distribute the instances | list | - | yes |
-| aws_user_data | The user data to be used on these instances. E.g. cloud init | string | `` | no |
-| cluster_name | Specify the cluster name all resources get named and tagged with | string | - | yes |
-| dcos_instance_os | The operating system to use. Instead of using your own AMI you could use a provided OS. | string | `centos_7.4` | no |
+| aws_user_data | User data to be used on these instances (cloud-init) | string | `` | no |
+| cluster_name | Cluster name all resources get named and tagged with | string | - | yes |
+| dcos_instance_os | Operating system to use. Instead of using your own AMI you could use a provided OS. | string | `centos_7.4` | no |
 | hostname_format | Format the hostname inputs are index+1, region, cluster_name | string | `%[3]s-master%[1]d-%[2]s` | no |
-| num_masters | The Number of masters to spawn. This number should be odd. Typical options are (1,3,5,7,9) | string | `3` | no |
-| tags | Add special tags to the resources created by this module | map | `<map>` | no |
+| num_masters | Number of masters to spawn. This number should be odd. Typical options are (1,3,5,7,9). | string | `3` | no |
+| tags | Custom tags added to the resources created by this module | map | `<map>` | no |
 
 ## Outputs
 
