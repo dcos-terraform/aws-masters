@@ -57,7 +57,7 @@ module "dcos-master-instances" {
   tags               = "${var.tags}"
 }
 
-resource "null_resource" "masters" {
+resource "null_resource" "masters-prereq" {
   // if the user supplies an AMI or user_data we expect the prerequisites are met.
   count = "${coalesce(var.aws_ami, var.user_data) == "" ? var.num_masters : 0}"
 
