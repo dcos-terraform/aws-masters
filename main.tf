@@ -43,18 +43,19 @@ module "dcos-master-instances" {
     aws = "aws"
   }
 
-  cluster_name       = "${var.cluster_name}"
-  hostname_format    = "${var.hostname_format}"
-  num                = "${var.num_masters}"
-  ami                = "${coalesce(var.aws_ami,module.dcos-tested-oses.aws_ami)}"
-  user_data          = "${var.user_data}"
-  instance_type      = "${var.aws_instance_type}"
-  subnet_ids         = ["${var.aws_subnet_ids}"]
-  security_group_ids = ["${var.aws_security_group_ids}"]
-  key_name           = "${var.aws_key_name}"
-  root_volume_size   = "${var.aws_root_volume_size}"
-  root_volume_type   = "gp2"
-  tags               = "${var.tags}"
+  cluster_name                = "${var.cluster_name}"
+  hostname_format             = "${var.hostname_format}"
+  num                         = "${var.num_masters}"
+  ami                         = "${coalesce(var.aws_ami,module.dcos-tested-oses.aws_ami)}"
+  user_data                   = "${var.user_data}"
+  instance_type               = "${var.aws_instance_type}"
+  subnet_ids                  = ["${var.aws_subnet_ids}"]
+  security_group_ids          = ["${var.aws_security_group_ids}"]
+  key_name                    = "${var.aws_key_name}"
+  root_volume_size            = "${var.aws_root_volume_size}"
+  root_volume_type            = "gp2"
+  tags                        = "${var.tags}"
+  associate_public_ip_address = "${var.associate_public_ip_address}"
 }
 
 resource "null_resource" "masters-prereq" {
