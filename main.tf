@@ -48,4 +48,3 @@ module "dcos-master-instances" {
   associate_public_ip_address = "${var.aws_associate_public_ip_address}"
   dcos_instance_os            = "${var.dcos_instance_os}"
 }
-
