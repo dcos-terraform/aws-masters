@@ -8,7 +8,7 @@
  *
  *```hcl
  * module "dcos-master-instances" {
- *   source  = "terraform-dcos/masters/aws"
+ *   source  = "dcos-terraform/masters/aws"
  *   version = "~> 0.1"
  *
  *   cluster_name = "production"
