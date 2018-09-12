@@ -23,21 +23,12 @@
 
 provider "aws" {}
 
-module "dcos-tested-oses" {
-  source  = "dcos-terraform/tested-oses/aws"
-  version = "~> 0.0"
-
-  providers = {
-    aws = "aws"
-  }
-
-  os = "${var.dcos_instance_os}"
-}
-
 // Instances is spawning the VMs to be used with DC/OS (bootstrap)
 module "dcos-master-instances" {
-  source  = "dcos-terraform/instance/aws"
-  version = "~> 0.0"
+  # source  = "dcos-terraform/instance/aws"
+  # version = "~> 0.0"
+
+  source = "../terraform-aws-instance"
 
   providers = {
     aws = "aws"
@@ -46,7 +37,7 @@ module "dcos-master-instances" {
   cluster_name                = "${var.cluster_name}"
   hostname_format             = "${var.hostname_format}"
   num                         = "${var.num_masters}"
-  ami                         = "${coalesce(var.aws_ami,module.dcos-tested-oses.aws_ami)}"
+  ami                = "${var.aws_ami}"
   user_data                   = "${var.user_data}"
   instance_type               = "${var.aws_instance_type}"
   subnet_ids                  = ["${var.aws_subnet_ids}"]
@@ -56,29 +47,6 @@ module "dcos-master-instances" {
   root_volume_type            = "gp2"
   tags                        = "${var.tags}"
   associate_public_ip_address = "${var.aws_associate_public_ip_address}"
+  dcos_instance_os            = "${var.dcos_instance_os}"
 }
 
-resource "null_resource" "masters-prereq" {
-  // if the user supplies an AMI or user_data we expect the prerequisites are met.
-  count = "${coalesce(var.aws_ami, var.user_data) == "" ? var.num_masters : 0}"
-
-  connection {
-    host = "${var.aws_associate_public_ip_address ? element(module.dcos-master-instances.public_ips, count.index) : element(module.dcos-master-instances.private_ips, count.index)}"
-    user = "${module.dcos-tested-oses.user}"
-  }
-
-  provisioner "file" {
-    content = "${module.dcos-tested-oses.os-setup}"
-
-    destination = "/tmp/dcos-prereqs.sh"
-  }
-
-  provisioner "remote-exec" {
-    inline = [
-      "chmod +x /tmp/dcos-prereqs.sh",
-      "sudo bash -x /tmp/dcos-prereqs.sh",
-    ]
-  }
-
-  depends_on = ["module.dcos-master-instances"]
-}
