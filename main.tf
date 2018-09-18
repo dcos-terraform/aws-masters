@@ -35,7 +35,7 @@ module "dcos-master-instances" {
   cluster_name                = "${var.cluster_name}"
   hostname_format             = "${var.hostname_format}"
   num                         = "${var.num_masters}"
-  ami                = "${var.aws_ami}"
+  ami                         = "${var.aws_ami}"
   user_data                   = "${var.user_data}"
   instance_type               = "${var.aws_instance_type}"
   subnet_ids                  = ["${var.aws_subnet_ids}"]
@@ -47,4 +47,3 @@ module "dcos-master-instances" {
   associate_public_ip_address = "${var.aws_associate_public_ip_address}"
   dcos_instance_os            = "${var.dcos_instance_os}"
 }
-
