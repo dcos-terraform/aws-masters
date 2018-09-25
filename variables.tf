@@ -1,15 +1,15 @@
 variable "cluster_name" {
-  description = "Cluster name all resources get named and tagged with"
+  description = "Name of the DC/OS cluster"
 }
 
 variable "tags" {
-  description = "Custom tags added to the resources created by this module"
+  description = "Add custom tags to all resources"
   type        = "map"
   default     = {}
 }
 
 variable "aws_ami" {
-  description = "AMI to be used"
+  description = "AMI that will be used for the instances instead of Mesosphere provided AMIs"
   default     = ""
 }
 
@@ -19,7 +19,7 @@ variable "aws_instance_type" {
 }
 
 variable "aws_root_volume_size" {
-  description = "Root volume size"
+  description = "Root volume size in GB"
   default     = "120"
 }
 
@@ -39,7 +39,7 @@ variable "aws_iam_instance_profile" {
 }
 
 variable "aws_associate_public_ip_address" {
-  description = "Associate a public ip address with there instances"
+  description = "Associate a public IP address with the instances"
   default     = true
 }
 
@@ -50,7 +50,7 @@ variable "user_data" {
 
 // TODO: Maybe use a list instead and provision keys through cloudinit
 variable "aws_key_name" {
-  description = "EC2 SSH key to use for these instances"
+  description = "Specify the aws ssh key to use. We assume its already loaded in your SSH agent. Set ssh_public_key to none"
 }
 
 variable "hostname_format" {
@@ -64,6 +64,6 @@ variable "dcos_instance_os" {
 }
 
 variable "num_masters" {
-  description = "Number of masters to spawn. This number should be odd. Typical options are (1,3,5,7,9)."
+  description = "Specify the amount of masters. For redundancy you should have at least 3"
   default     = "3"
 }
