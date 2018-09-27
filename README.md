@@ -24,27 +24,28 @@ module "dcos-master-instances" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| aws_ami | AMI to be used | string | `` | no |
-| aws_associate_public_ip_address | Instance profile to be used for these instances | string | `true` | no |
+| aws_ami | AMI that will be used for the instances instead of Mesosphere provided AMIs | string | `` | no |
+| aws_associate_public_ip_address | Associate a public IP address with the instances | string | `true` | no |
 | aws_iam_instance_profile | Instance profile to be used for these instances | string | `` | no |
 | aws_instance_type | Instance type | string | `m4.xlarge` | no |
-| aws_key_name | EC2 SSH key to use for these instances | string | - | yes |
-| aws_root_volume_size | Root volume size | string | `120` | no |
+| aws_key_name | Specify the aws ssh key to use. We assume its already loaded in your SSH agent. Set ssh_public_key to none | string | - | yes |
+| aws_root_volume_size | Root volume size in GB | string | `120` | no |
 | aws_security_group_ids | Firewall IDs to use for these instances | list | - | yes |
 | aws_subnet_ids | Subnets to spawn the instances in. The module tries to distribute the instances | list | - | yes |
-| aws_user_data | User data to be used on these instances (cloud-init) | string | `` | no |
-| cluster_name | Cluster name all resources get named and tagged with | string | - | yes |
+| cluster_name | Name of the DC/OS cluster | string | - | yes |
 | dcos_instance_os | Operating system to use. Instead of using your own AMI you could use a provided OS. | string | `centos_7.4` | no |
 | hostname_format | Format the hostname inputs are index+1, region, cluster_name | string | `%[3]s-master%[1]d-%[2]s` | no |
-| num_masters | Number of masters to spawn. This number should be odd. Typical options are (1,3,5,7,9). | string | `3` | no |
-| tags | Custom tags added to the resources created by this module | map | `<map>` | no |
+| num_masters | Specify the amount of masters. For redundancy you should have at least 3 | string | `3` | no |
+| tags | Add custom tags to all resources | map | `<map>` | no |
+| user_data | User data to be used on these instances (cloud-init) | string | `` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| instances | List of instances IDs created by this module |
-| os_user | Output the OS user if default AMI is used |
+| instances | List of instance IDs |
+| os_user | The OS user to be used |
+| prereq-id | Returns the ID of the prereq script (if user_data or ami are not used) |
 | private_ips | List of private ip addresses created by this module |
 | public_ips | List of public ip addresses created by this module |
 
