@@ -8,7 +8,7 @@ EXAMPLE
 ```hcl
 module "dcos-master-instances" {
   source  = "dcos-terraform/masters/aws"
-  version = "~> 0.1"
+  version = "~> 0.1.0"
 
   cluster_name = "production"
   subnet_ids = ["subnet-12345678"]
