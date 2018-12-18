@@ -28,7 +28,7 @@ module "dcos-master-instances" {
 | aws_associate_public_ip_address | Associate a public IP address with the instances | string | `true` | no |
 | aws_iam_instance_profile | Instance profile to be used for these instances | string | `` | no |
 | aws_instance_type | Instance type | string | `m4.xlarge` | no |
-| aws_key_name | Specify the aws ssh key to use. We assume its already loaded in your SSH agent. Set ssh_public_key to none | string | - | yes |
+| aws_key_name | Specify the aws ssh key to use. We assume its already loaded in your SSH agent. Set ssh_public_key_file to empty string | string | - | yes |
 | aws_root_volume_size | Root volume size in GB | string | `120` | no |
 | aws_security_group_ids | Firewall IDs to use for these instances | list | - | yes |
 | aws_subnet_ids | Subnets to spawn the instances in. The module tries to distribute the instances | list | - | yes |
