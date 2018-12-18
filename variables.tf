@@ -50,7 +50,7 @@ variable "user_data" {
 
 // TODO: Maybe use a list instead and provision keys through cloudinit
 variable "aws_key_name" {
-  description = "Specify the aws ssh key to use. We assume its already loaded in your SSH agent. Set ssh_public_key to none"
+  description = "Specify the aws ssh key to use. We assume its already loaded in your SSH agent. Set ssh_public_key_file to empty string"
 }
 
 variable "hostname_format" {
