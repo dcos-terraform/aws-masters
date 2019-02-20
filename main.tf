@@ -44,6 +44,8 @@ module "dcos-master-instances" {
   root_volume_size            = "${var.aws_root_volume_size}"
   root_volume_type            = "gp2"
   tags                        = "${var.tags}"
+  private_ip_list             = ["${var.private_ip_list}"]
+  ami_list                    = ["${var.aws_ami_list}"]
   associate_public_ip_address = "${var.aws_associate_public_ip_address}"
   dcos_instance_os            = "${var.dcos_instance_os}"
   iam_instance_profile        = "${var.aws_iam_instance_profile}"

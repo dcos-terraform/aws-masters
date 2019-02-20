@@ -67,3 +67,13 @@ variable "num_masters" {
   description = "Specify the amount of masters. For redundancy you should have at least 3"
   default     = "3"
 }
+
+variable "private_ip_list" {
+  description = "List of private IP addresses used to associate to associate all instances within the module."
+  default     = []
+}
+
+variable "aws_ami_list" {
+  description = "List of custom AMIs used to associate to associate all instances within the module."
+  default     = []
+}
