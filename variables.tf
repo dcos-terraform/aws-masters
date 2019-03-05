@@ -67,3 +67,8 @@ variable "num_masters" {
   description = "Specify the amount of masters. For redundancy you should have at least 3"
   default     = "3"
 }
+
+variable "name_prefix" {
+  description = "Name Prefix"
+  default     = ""
+}

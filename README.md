@@ -35,6 +35,7 @@ module "dcos-master-instances" {
 | cluster_name | Name of the DC/OS cluster | string | - | yes |
 | dcos_instance_os | Operating system to use. Instead of using your own AMI you could use a provided OS. | string | `centos_7.4` | no |
 | hostname_format | Format the hostname inputs are index+1, region, cluster_name | string | `%[3]s-master%[1]d-%[2]s` | no |
+| name_prefix | Name Prefix | string | `` | no |
 | num_masters | Specify the amount of masters. For redundancy you should have at least 3 | string | `3` | no |
 | tags | Add custom tags to all resources | map | `<map>` | no |
 | user_data | User data to be used on these instances (cloud-init) | string | `` | no |
