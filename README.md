@@ -45,7 +45,6 @@ module "dcos-master-instances" {
 |------|-------------|
 | instances | List of instance IDs |
 | os\_user | The OS user to be used |
-| prereq-id | Returns the ID of the prereq script (if user_data or ami are not used) |
 | private\_ips | List of private ip addresses created by this module |
 | public\_ips | List of public ip addresses created by this module |
 
