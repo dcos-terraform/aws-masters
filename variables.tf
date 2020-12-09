@@ -43,6 +43,11 @@ variable "aws_associate_public_ip_address" {
   default     = true
 }
 
+variable "aws_extra_volumes" {
+  description = "Extra volumes for each instance"
+  default     = []
+}
+
 variable "user_data" {
   description = "User data to be used on these instances (cloud-init)"
   default     = ""
@@ -72,4 +77,3 @@ variable "name_prefix" {
   description = "Name Prefix"
   default     = ""
 }
-
